@@ -1,36 +1,40 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""
-Given a string, find the length of the longest substring without
-repeating characters. Note that substring is not subsequence.
-"""
-
 
 import doctest
 
 
-def lengthOfLongestString(s):
+def lengthOfLongestSubstring(s):
+
     """
-    :type s: str
-    :rtype: int
-    >>> lengthOfLongestString("pwwkew")
+    type: s string
+    rtype: int
+    s[j] have a duplicate in the range of [i, j) with index j', we could replace
+    just replace i with j' + 1 to find a new no repeat substring.
+    >>> lengthOfLongestSubstring("b")
+    1
+    >>> lengthOfLongestSubstring("bbb")
+    1
+    >>> lengthOfLongestSubstring("abcabca")
     3
-    >>> lengthOfLongestString("abc")
+    >>> lengthOfLongestSubstring("abc")
     3
-    >>> lengthOfLongestString("")
-    0
-    >>> lengthOfLongestString("dvdf")
+    >>> lengthOfLongestSubstring("dvdc")
     3
     """
-    CHAR_NUM = 256
-    char_map = [-1] * CHAR_NUM
+
+    # extended ascii character number 256
+    chr_map = [-1] * 256
+    li = 0                # left index
     n = len(s)
     max_len = 0
-    left = 0
-    for i in range(n):
-        left = char_map[s[i]]
-        if left != -1:
-            max_len = max(i - left, max_len)
+    for ri in range(n):
+        li = max(chr_map[ord(s[ri])], li)
+        max_len = max(max_len, ri - li + 1)
+        chr_map[ord(s[ri])] = ri + 1
+
+    return max_len
+
 
 doctest.testmod()
