@@ -14,6 +14,8 @@ class Solution(object):
         """
 
         n = len(s)
+        #  initilize the python 2-d array
+        #  m = [[0] * n] * n, wrong!
         m = [x[:] for x in [[0] * n] * n]
         longest_str = ""
         for i in range(n-1, -1, -1):
