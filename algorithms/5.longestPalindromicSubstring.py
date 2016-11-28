@@ -106,7 +106,7 @@ class Solution(object):
         ss = pre_process(s)
         ls, idx, mx = (len(ss), 0, 0)
 
-        print(ss)
+        print("'" + ', '.join(list(ss)) + "'")
         # initilize the point array
         p = [0] * ls
         for i in range(1, ls-1):
