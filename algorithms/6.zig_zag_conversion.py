@@ -18,12 +18,19 @@ string convert(string text, int nRows);
 convert("PAYPALISHIRING", 3) should return "PAHNAPLSIIGYIR".
 """
 
+import doctest
+
 
 class Solution(object):
 
     def convert(self, zig, numRows):
 
-        #  count num by row and reached out to numRows then reverse
+        '''
+        count num by row and reached out to numRows then reverse
+        >>> e = Solution()
+        >>> e.convert('PAYPALISHIRING', 3)
+        'PAHNAPLSIIGYIR'
+        '''
 
         n = len(zig)
         if numRows >= n or numRows <= 1:
@@ -45,8 +52,9 @@ class Solution(object):
 
 if __name__ == "__main__":
 
-    e = Solution()
-    if e.convert('PAYPALISHIRING', 3) != "PAHNAPLSIIGYIR":
-        raise("Not Passed!")
-    else:
-        print("Passed for example: PAYPALISHIRING with Row 3")
+    doctest.testmod()
+    # e = Solution()
+    # if e.convert('PAYPALISHIRING', 3) != "PAHNAPLSIIGYIR":
+    #     raise("Not Passed!")
+    # else:
+    #     print("Passed for example: PAYPALISHIRING with Row 3")
