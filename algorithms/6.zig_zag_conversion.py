@@ -30,6 +30,10 @@ class Solution(object):
         >>> e = Solution()
         >>> e.convert('PAYPALISHIRING', 3)
         'PAHNAPLSIIGYIR'
+        >>> e.convert('PAYPALISHIRING', 100)
+        'PAYPALISHIRING'
+        >>> e.convert('PAYPALISHIRING', 0)
+        'PAYPALISHIRING'
         '''
 
         n = len(zig)
