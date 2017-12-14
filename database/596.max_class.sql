@@ -35,3 +35,24 @@ from (
 ) t
 where rnk >= 5
 ;
+
+-- compare row_number, rank, dense_rank
+select distinct class
+from (
+  select class
+    , case when @ke != class then @row_num := 1
+      else @row_num := @row_num + 1 end as row_number
+    , case when @ke != class then @rank := 1
+      when @val = student then @rank
+        else @rank := @rank + 1 end  as rank
+    , case when @ke != class then @dense_rank:= 1
+      when @val = student then @dense_rank
+      else @dense_rank:= @dense_rank + 1 end  as rnk
+    , @ke := class  as ke
+    , @val := student  as val
+  from courses, (select @row_num := 0, @rank := 0, @dense_rank := 0, @ke := '', @val := '') init_var
+  order by class, student
+) t
+where rnk >= 5
+;
+
